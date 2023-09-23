@@ -11,8 +11,6 @@ public class MessageReqDTO {
         private String contents;
         private String from;
         private String to;
-        private String position;
-        private String timeStamp;
     }
 
     @Getter

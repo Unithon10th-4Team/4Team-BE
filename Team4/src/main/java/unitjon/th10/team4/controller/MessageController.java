@@ -19,12 +19,12 @@ public class MessageController {
     private final MessageService messageService;
 
     @PostMapping("")
-    public void sendToEmoji(@RequestBody MessageReqDTO.Emoji emojiDTO){
+    public void sendToEmoji(@RequestBody MessageReqDTO.Emoji emojiDTO) {
         messageService.messageToEmoji(emojiDTO);
     }
 
     @GetMapping("")
-    public List<MessageResDTO.List> getMessageReceivedList(@RequestParam("memberName")String memberName){
+    public List<MessageResDTO.List> getMessageReceivedList(@RequestParam("memberName") String memberName) {
         return messageService.getMessageLogList(memberName);
     }
 }

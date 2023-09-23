@@ -18,6 +18,7 @@ import unitjon.th10.team4.entity.Member;
 import unitjon.th10.team4.repository.MemberRepository;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
@@ -54,8 +55,16 @@ public class MemberService {
 
         // 멤버 생성 및 저장
         memberRepository.save(new Member(name, fanclubId, profileUrl, location, fcmToken));
+
+        // 세션 갱신
+        updateSessionExpiration(name);
     }
 
+    private void updateSessionExpiration(String name) {
+        String sessionKey = "member:%s:session".formatted(name);
+        redisTemplate.opsForValue().set(sessionKey, "true");
+        redisTemplate.expire(sessionKey, Duration.ofMinutes(5));
+    }
 
     public List<Member> getNearMembers(String name, Point coordinates, int distance) {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
@@ -71,6 +80,10 @@ public class MemberService {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
         member.setLocation(point);
         memberRepository.save(member);
+
+        // 세션 갱신
+        updateSessionExpiration(name);
+
         publisher.publishEvent(new LocationUpdatedEvent(member));
     }
 
@@ -86,20 +99,19 @@ public class MemberService {
         Member updatedMember = event.member();
         List<Member> nearMembers = memberRepository.findByLocationNear(updatedMember.getLocation(), new Distance(2, RedisGeoCommands.DistanceUnit.METERS));
         nearMembers.removeIf(e -> !e.getFanclubId().equals(updatedMember.getFanclubId()) || !e.isOnline() || e.getName().equals(updatedMember.getName()));
-        for (Member member: nearMembers){
+        for (Member member : nearMembers) {
             String membername = member.getName();
-            if (!sseEmitters.existMemberInSession(membername)) {
-                continue;
+            if (sseEmitters.existsMemberInSession(membername)) {
+                SseEmitter sseEmitter = sseEmitters.get(membername);
+                sseEmitter.send(
+                        SseEmitter.event()
+                                .name(updatedMember.getName())
+                                .data(MemberUpdateResponse.Status
+                                        .builder()
+                                        .name(updatedMember.getName())
+                                        .isOnline(updatedMember.isOnline()))
+                );
             }
-            SseEmitter sseEmitter = sseEmitters.get(membername);
-            sseEmitter.send(
-                    SseEmitter.event()
-                            .name(updatedMember.getName())
-                            .data(MemberUpdateResponse.Status
-                                    .builder()
-                                    .name(updatedMember.getName())
-                                    .isOnline(updatedMember.isOnline()))
-            );
         }
     }
 
