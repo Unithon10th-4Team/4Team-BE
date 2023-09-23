@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="485bcdd6-b583-4889-b701-74e006464e90" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/config/RedisConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/config/S3Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/controller/FanclubController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubFindDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubSaveDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubUpdateDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/RankFindDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/entity/Fanclub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/repository/FanclubRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/service/FanclubService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/service/S3service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Team4/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +48,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -48,6 +64,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="2Vm45EUZKHr67rIivhZUljvV4RM" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
@@ -56,19 +75,27 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "11",
+    "last_opened_file_path": "C:/unithon/Team4-BE/Team4/src/main/java/unitjon/th10/team4/global/config",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Problems",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "프로젝트",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\unithon\Team4-BE\Team4\src\main\java\unitjon\th10\team4\global\config" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Team4Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Team4.main" />
@@ -88,10 +115,22 @@
       <updated>1695427736054</updated>
       <workItem from="1695427737438" duration="3800000" />
       <workItem from="1695432704333" duration="480000" />
+      <workItem from="1695441601293" duration="20745000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
