@@ -60,6 +60,7 @@ public class FanclubService {
     public void updatePoint(String id,int point){
         Fanclub fanclub = fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
         fanclub.setPoint(fanclub.getPoint()+point);
+        redisTemplate.opsForZSet().incrementScore("fanclub:ranking",id, point);
         fanclubRepository.save(fanclub);
     }
 }
