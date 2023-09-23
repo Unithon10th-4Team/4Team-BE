@@ -32,6 +32,9 @@ public class MessageService {
 
     @Transactional
     public void messageToEmoji(MessageReqDTO.Emoji emojiDTO){
+        if (sseEmitters.existMemberInSession(emojiDTO.getTo())) {
+            throw new RuntimeException("회원 SSE 커넥션 정보 없음");
+        }
         String messageId = UUID.randomUUID().toString();
         messageRepository.save(
                 Message.builder()
@@ -95,7 +98,6 @@ public class MessageService {
 
     private String encodeUTF8(String originMessage){
         byte[] bytes = StringUtils.getBytesUtf8(originMessage);
-
         return StringUtils.newStringUtf8(bytes);
     }
 }

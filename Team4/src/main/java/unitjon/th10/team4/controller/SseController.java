@@ -22,7 +22,7 @@ public class SseController {
 
     @GetMapping(value ="/connect",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public ResponseEntity<SseEmitter> connectionSse(@RequestParam("memberName")String memberName){
-        SseEmitter emitter = new SseEmitter();
+        SseEmitter emitter = new SseEmitter(60*1000000L);
         sseEmitters.add(memberName,emitter);
         try {
             emitter.send(SseEmitter.event()
