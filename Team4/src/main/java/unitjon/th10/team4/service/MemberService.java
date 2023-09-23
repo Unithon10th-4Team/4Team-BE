@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
+import org.springframework.data.keyvalue.core.KeyValueOperations;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -14,24 +15,32 @@ import unitjon.th10.team4.config.SseEmitters;
 import unitjon.th10.team4.dto.event.LocationUpdatedEvent;
 import unitjon.th10.team4.dto.event.StatusUpdatedEvent;
 import unitjon.th10.team4.dto.res.MemberUpdateResponse;
+import unitjon.th10.team4.entity.Fanclub;
 import unitjon.th10.team4.entity.Member;
+import unitjon.th10.team4.repository.FanclubRepository;
 import unitjon.th10.team4.repository.MemberRepository;
 
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 @Service
 public class MemberService {
-
     private final StringRedisTemplate redisTemplate;
+
     private final MemberRepository memberRepository;
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
     private final SseEmitters sseEmitters;
     private final S3Service s3Service;
+    private final FanclubRepository fanclubRepository;
+
+    public List<Member> getAllMembers() {
+        return StreamSupport.stream(memberRepository.findAll().spliterator(), false).toList();
+    }
 
     public Member getMember(String name) {
         return memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
@@ -116,6 +125,7 @@ public class MemberService {
     @EventListener
     public void updateLocation(LocationUpdatedEvent event) {
         Member updatedMember = event.member();
+        Fanclub fanclub = fanclubRepository.findById(updatedMember.getFanclubId()).orElseThrow(() -> new RuntimeException("존재하지 않는 팬클럽입니다."));
         List<Member> nearMembers = memberRepository.findByLocationNear(updatedMember.getLocation(), new Distance(2, RedisGeoCommands.DistanceUnit.METERS));
 
         // 동일한 팬클럽에 속한 오프라인 멤버만 추출 (본인 제외)
@@ -127,11 +137,10 @@ public class MemberService {
             boolean isRecentlyPushed = pushedDate != null && Instant.parse(pushedDate).isAfter(Instant.now().minusSeconds(3600));
             if (!isRecentlyPushed) {
                 // 푸시 메시지 전송
-                try {
-                    fcmService.sendMessageTo(member.getFcmToken(), "근처에 같은 팬이 있습니다...!", "앱을 켜서 포인트를 얻으세요!");
-                } catch (Exception e) {
-                    e.printStackTrace(); // TODO
-                }
+                fcmService.sendMessageTo(
+                        member.getFcmToken(),
+                        "HOXY.. 내 옆에 %s가?".formatted(fanclub.getName()),
+                        "%s님 주변에 %s가 있어요❤️".formatted(updatedMember.getName(), fanclub.getName()));
 
                 // 푸시 메시지 수신 이력 저장
                 redisTemplate.opsForValue().set("member:%s:recently-pushed".formatted(member.getName()), Instant.now().toString());

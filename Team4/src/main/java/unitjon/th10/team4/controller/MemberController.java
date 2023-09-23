@@ -22,6 +22,11 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @GetMapping("")
+    List<Member> getAllMembers() {
+        return memberService.getAllMembers();
+    }
+
     @GetMapping("{name}")
     MemberResponse getMember(@PathVariable String name) {
         Member member = memberService.getMember(name);
