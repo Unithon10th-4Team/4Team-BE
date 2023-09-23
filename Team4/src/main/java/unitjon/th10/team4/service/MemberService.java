@@ -74,4 +74,9 @@ public class MemberService {
         member.setPoint(member.getPoint()+point);
         memberRepository.save(member);
     }
+
+    public String getFanclubIdByName(String name){
+        Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름이다."));
+        return member.getFanclubId();
+    }
 }
