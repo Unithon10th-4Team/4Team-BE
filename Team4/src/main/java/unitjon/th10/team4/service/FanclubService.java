@@ -56,4 +56,10 @@ public class FanclubService {
         Fanclub fanclub = fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
         fanclubRepository.delete(fanclub);
     }
+
+    public void updatePoint(String id,int point){
+        Fanclub fanclub = fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
+        fanclub.setPoint(fanclub.getPoint()+point);
+        fanclubRepository.save(fanclub);
+    }
 }
