@@ -105,10 +105,9 @@ public class MemberService {
                 sseEmitter.send(
                         SseEmitter.event()
                                 .name(updatedMember.getName())
-                                .data(MemberUpdateResponse.Status
-                                        .builder()
-                                        .name(updatedMember.getName())
-                                        .isOnline(updatedMember.isOnline()))
+                                .data(new MemberUpdateResponse.Status(
+                                        updatedMember.getName(),
+                                        updatedMember.isOnline()))
                 );
             }
         }

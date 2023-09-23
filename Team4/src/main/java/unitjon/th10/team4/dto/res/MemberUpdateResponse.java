@@ -1,15 +1,16 @@
 package unitjon.th10.team4.dto.res;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 @Getter
 public class MemberUpdateResponse {
 
+    @Setter
     @Getter
-    @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class Status{
         private String name;
-        private Boolean isOnline;
+        private boolean isOnline;
     }
 }
