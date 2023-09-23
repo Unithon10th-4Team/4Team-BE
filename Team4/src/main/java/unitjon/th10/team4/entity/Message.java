@@ -12,7 +12,7 @@ import java.io.Serializable;
 @RedisHash("message")
 public class Message implements Serializable {
     @Id
-    private String message_id;
+    private String messageId;
     private String contents;
     private String from;
     private String to;

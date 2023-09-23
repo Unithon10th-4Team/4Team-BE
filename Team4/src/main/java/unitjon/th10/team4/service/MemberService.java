@@ -85,20 +85,19 @@ public class MemberService {
         Member updatedMember = event.member();
         List<Member> nearMembers = memberRepository.findByLocationNear(updatedMember.getLocation(), new Distance(2, RedisGeoCommands.DistanceUnit.METERS));
         nearMembers.removeIf(e -> !e.getFanclubId().equals(updatedMember.getFanclubId()) || !e.isOnline() || e.getName().equals(updatedMember.getName()));
-        for (Member member: nearMembers){
+        for (Member member : nearMembers) {
             String membername = member.getName();
-            if (!sseEmitters.existMemberInSession(membername)) {
-                continue;
+            if (sseEmitters.existMemberInSession(membername)) {
+                SseEmitter sseEmitter = sseEmitters.get(membername);
+                sseEmitter.send(
+                        SseEmitter.event()
+                                .name(updatedMember.getName())
+                                .data(MemberUpdateResponse.Status
+                                        .builder()
+                                        .name(updatedMember.getName())
+                                        .isOnline(updatedMember.isOnline()))
+                );
             }
-            SseEmitter sseEmitter = sseEmitters.get(membername);
-            sseEmitter.send(
-                    SseEmitter.event()
-                            .name(updatedMember.getName())
-                            .data(MemberUpdateResponse.Status
-                                    .builder()
-                                    .name(updatedMember.getName())
-                                    .isOnline(updatedMember.isOnline()))
-            );
         }
     }
 

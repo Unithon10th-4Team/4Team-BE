@@ -9,7 +9,6 @@ import unitjon.th10.team4.repository.FanclubRepository;
 
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
@@ -46,6 +45,9 @@ public class FanclubService {
         fanclub.setPoint(fanclubSaveDto.getPoint());
 
         fanclubRepository.save(fanclub);
+
+        // 랭킹 보드에 추가
+        redisTemplate.opsForZSet().add("fanclub:ranking", fanclub.getFanclubId(), fanclub.getPoint());
     }
 
 
@@ -54,10 +56,10 @@ public class FanclubService {
         fanclubRepository.delete(fanclub);
     }
 
-    public void updatePoint(String id,int point){
+    public void updatePoint(String id, int point) {
         Fanclub fanclub = fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
-        fanclub.setPoint(fanclub.getPoint()+point);
-        redisTemplate.opsForZSet().incrementScore("fanclub:ranking",id, point);
+        fanclub.setPoint(fanclub.getPoint() + point);
+        redisTemplate.opsForZSet().incrementScore("fanclub:ranking", id, point);
         fanclubRepository.save(fanclub);
     }
 }

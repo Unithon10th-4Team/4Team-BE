@@ -25,11 +25,10 @@ public class S3Service {
     private final AmazonS3 amazonS3;
 
 
-
     @Transactional
     public String saveImage(MultipartFile file) {
 
-        if(file.isEmpty()){
+        if (file.isEmpty()) {
             throw new RuntimeException("파일이 없습니다.");
         }
 
@@ -37,11 +36,11 @@ public class S3Service {
         //확장자 제한
         String fileName = file.getOriginalFilename();
         String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
-        if(!ext.equals("jpeg") && !ext.equals("jpg") && !ext.equals("png")){
+        if (!ext.equals("jpeg") && !ext.equals("jpg") && !ext.equals("png")) {
             throw new RuntimeException("업로드가 불가능한 확장자입니다.");
         }
 
-        String imageName = UUID.randomUUID()+file.getOriginalFilename();
+        String imageName = UUID.randomUUID() + file.getOriginalFilename();
 
 
         try {
@@ -53,13 +52,12 @@ public class S3Service {
             String newImageUrl = amazonS3.getUrl("plowithmebucket", imageName).toString();
 
             return newImageUrl;
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException("파일을 저장할 수 없습니다.");
 
         }
 
     }
-
 
 
     @Transactional
@@ -83,7 +81,7 @@ public class S3Service {
             ObjectMetadata metadata = new ObjectMetadata();
             metadata.setContentType(file.getContentType());
 
-            if(oldImageUrl != "https://plowithmebucket.s3.ap-northeast-2.amazonaws.com/default-image.png" || oldImageUrl != null) {
+            if (oldImageUrl != "https://plowithmebucket.s3.ap-northeast-2.amazonaws.com/default-image.png" || oldImageUrl != null) {
                 amazonS3.deleteObject(bucket, oldImageUrl.split("/")[3]);
             }
 
@@ -99,7 +97,6 @@ public class S3Service {
 
         }
     }
-
 
 
     @Transactional
