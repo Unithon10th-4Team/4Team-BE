@@ -29,9 +29,13 @@ public class MessageService {
     private final FcmService fcmService;
     private final RedisTemplate<String,List<String>> redisTemplate;
     private final SseEmitters sseEmitters;
+    private final MemberService memberService;
 
     @Transactional
     public void messageToEmoji(MessageReqDTO.Emoji emojiDTO){
+        if (sseEmitters.existMemberInSession(emojiDTO.getTo())) {
+            throw new RuntimeException("회원 SSE 커넥션 정보 없음");
+        }
         String messageId = UUID.randomUUID().toString();
         messageRepository.save(
                 Message.builder()
@@ -41,11 +45,9 @@ public class MessageService {
                         .to(emojiDTO.getTo())
                         .timeStamp(emojiDTO.getTimeStamp())
                 .build());
-
+        memberService.updatePoint(emojiDTO.getFrom(),5);
         setMessageLogAndReceiverNotification(emojiDTO,messageId);
-        //TODO : FCM 전달
         //TODO : 발신자, 그룹 포인트 갱신
-        //        fcmService.sendMessageTo(emojiDTO.getFcmToken(),emojiDTO.getFrom()+"님이"+emojiDTO.getContents()+"를 보냈어요","");
     }
 
     @Transactional
@@ -97,7 +99,6 @@ public class MessageService {
 
     private String encodeUTF8(String originMessage){
         byte[] bytes = StringUtils.getBytesUtf8(originMessage);
-
         return StringUtils.newStringUtf8(bytes);
     }
 }
