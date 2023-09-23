@@ -26,7 +26,8 @@ public class FcmService {
     private String API_URL = "https://fcm.googleapis.com/v1/projects/unithon10th/messages:send";
     private final ObjectMapper objectMapper;
 
-    public void sendMessageTo(String targetToken, String title, String body) throws IOException {
+    @SneakyThrows
+    public void sendMessageTo(String targetToken, String title, String body){
         String message = makeMessage(targetToken, title, body);
 
         OkHttpClient client = new OkHttpClient();
