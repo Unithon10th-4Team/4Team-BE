@@ -67,4 +67,11 @@ public class MemberService {
         member.setOnline(isOnline);
         memberRepository.save(member);
     }
+
+    public void updatePoint(String name,int point){
+        log.info("{} new get point :{}",name,point);
+        Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름이다."));
+        member.setPoint(member.getPoint()+point);
+        memberRepository.save(member);
+    }
 }

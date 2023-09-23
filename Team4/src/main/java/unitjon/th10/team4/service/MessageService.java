@@ -29,6 +29,7 @@ public class MessageService {
     private final FcmService fcmService;
     private final RedisTemplate<String,List<String>> redisTemplate;
     private final SseEmitters sseEmitters;
+    private final MemberService memberService;
 
     @Transactional
     public void messageToEmoji(MessageReqDTO.Emoji emojiDTO){
@@ -44,7 +45,7 @@ public class MessageService {
                         .to(emojiDTO.getTo())
                         .timeStamp(emojiDTO.getTimeStamp())
                 .build());
-
+        memberService.updatePoint(emojiDTO.getFrom(),5);
         setMessageLogAndReceiverNotification(emojiDTO,messageId);
         //TODO : 발신자, 그룹 포인트 갱신
     }
