@@ -18,6 +18,7 @@ import unitjon.th10.team4.dto.res.MemberUpdateResponse;
 import unitjon.th10.team4.entity.Fanclub;
 import unitjon.th10.team4.entity.Member;
 import unitjon.th10.team4.repository.FanclubRepository;
+import unitjon.th10.team4.entity.SseType;
 import unitjon.th10.team4.repository.MemberRepository;
 
 import java.io.IOException;
@@ -32,6 +33,7 @@ public class MemberService {
     private final StringRedisTemplate redisTemplate;
 
     private final MemberRepository memberRepository;
+    private final S3Service s3Service;
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
     private final SseEmitters sseEmitters;
@@ -116,8 +118,9 @@ public class MemberService {
                                 .name(updatedMember.getName())
                                 .data(new MemberUpdateResponse.Status(
                                         updatedMember.getName(),
-                                        updatedMember.isOnline()))
-                );
+                                        updatedMember.isOnline(),
+                                        SseType.STATUS)
+                ));
             }
         }
     }
@@ -157,5 +160,10 @@ public class MemberService {
     public String getFanclubIdByName(String name) {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름이다."));
         return member.getFanclubId();
+    }
+
+    public void addDummyMemberByBasic(Member member){
+        member.setOnline(true);
+        memberRepository.save(member);
     }
 }
