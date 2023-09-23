@@ -5,40 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="485bcdd6-b583-4889-b701-74e006464e90" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/config/FCMConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/controller/FCMController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/controller/MemberController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/FCMMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/CreateMemberRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/FCMReqDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/GetNearMembersRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/UpdateMemberLocationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/UpdateMemberStatusRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/res/MemberListResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/res/MemberResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/entity/Member.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/repository/FanclubRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/repository/MemberRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/FcmService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/MemberService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/resources/application-fcm.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Team4/src/main/resources/unithon10th.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/config/S3Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/config/S3Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/config/RedisConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/config/S3Config.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/controller/FanclubController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/controller/FanclubController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubFindDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/res/FanclubFindDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubSaveDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/FanclubSaveDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/FanclubUpdateDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/dto/RankFindDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/dto/req/RankFindDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/entity/Fanclub.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/entity/Fanclub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/repository/FanclubRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/service/FanclubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/FanclubService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/global/service/S3service.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/S3service.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +99,7 @@
       <updated>1695427736054</updated>
       <workItem from="1695427737438" duration="3800000" />
       <workItem from="1695432704333" duration="480000" />
-      <workItem from="1695441601293" duration="23228000" />
+      <workItem from="1695441601293" duration="24181000" />
     </task>
     <servers />
   </component>
