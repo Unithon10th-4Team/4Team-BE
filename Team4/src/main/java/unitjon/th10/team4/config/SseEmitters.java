@@ -34,7 +34,7 @@ public class SseEmitters {
         return emitters.get(memberName);
     }
 
-    public Boolean existMemberInSession(String memberName) {
-        return emitters.get(memberName) == null;
+    public boolean existsMemberInSession(String memberName) {
+        return emitters.get(memberName) != null;
     }
 }
