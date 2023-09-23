@@ -30,6 +30,7 @@ public class MemberService {
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
     private final SseEmitters sseEmitters;
+    private final S3Service s3Service;
 
     public Member getMember(String name) {
         return memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
@@ -42,8 +43,8 @@ public class MemberService {
             Point location,
             MultipartFile profileImage
     ) {
-        // 이미지 업로드 TODO
-        String profileUrl = "";
+        // 이미지 업로드
+        String profileUrl = s3Service.saveImage(profileImage);
 
         // 이름 중복 확인
         if (memberRepository.existsById(name)) {

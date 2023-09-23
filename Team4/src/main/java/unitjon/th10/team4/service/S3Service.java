@@ -6,7 +6,7 @@ import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @Service
-public class S3service {
+public class S3Service {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
@@ -25,9 +25,7 @@ public class S3service {
     private final AmazonS3 amazonS3;
 
 
-    /**
-     이미지 저장
-     */
+
     @Transactional
     public String saveImage(MultipartFile file) {
 
@@ -63,9 +61,7 @@ public class S3service {
     }
 
 
-    /**
-     이미지 수정
-     */
+
     @Transactional
     public String updateImage(MultipartFile file, String oldImageUrl) {
 
@@ -105,9 +101,7 @@ public class S3service {
     }
 
 
-    /**
-     이미지 삭제
-     */
+
     @Transactional
     public String deleteImage(String imageUrl) {
         try {
