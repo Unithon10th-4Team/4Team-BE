@@ -42,6 +42,8 @@ public class DataInitialize implements ApplicationRunner {
                 "2023년에 1기가 창단되었습니다.", "르세라핌", "https://plowithmebucket.s3.ap-northeast-2.amazonaws.com/LESSERAFIM.png");
         Fanclub f9 = new Fanclub("네버랜드", "https://plowithmebucket.s3.ap-northeast-2.amazonaws.com/%EC%95%84%EC%9D%B4%EB%93%A4+%ED%8C%AC%EB%8D%A4_%EB%84%A4%EB%B2%84%EB%9E%9C%EB%93%9C.png", "아이들 팬클럽.\n" +
                 "2018년에 1기가 창단되었습니다.", "아이들", "https://plowithmebucket.s3.ap-northeast-2.amazonaws.com/%EC%95%84%ED%8B%B0%EC%8A%A4%ED%8A%B8_%EC%95%84%EC%9D%B4%EB%93%A4.png");
+        Fanclub f10 = new Fanclub("몬베베", "https://media.discordapp.net/attachments/1153995173739634740/1155284977634779277/87b829ece672dbbb.png?width=450&height=450", "몬스타엑스 공식 팬클럽. \n" +
+                "2016년에 1기가 창단되었습니다.", "몬스터엑스", "https://media.discordapp.net/attachments/1153995173739634740/1155285204706000996/bdc1bef3fcdd0629.png?width=1888&height=936");
         fanclubService.saveDummyFanclub(f1);
         fanclubService.saveDummyFanclub(f2);
         fanclubService.saveDummyFanclub(f3);
@@ -51,7 +53,9 @@ public class DataInitialize implements ApplicationRunner {
         fanclubService.saveDummyFanclub(f7);
         fanclubService.saveDummyFanclub(f8);
         fanclubService.saveDummyFanclub(f9);
-        Member m1 = new Member("testuser1", f6.getFanclubId(), "https://github.com/Unithon10th-Team4/Team4-BE/assets/39437170/aba36e2d-0756-4434-8c21-948fdccbb580", memberDummyBasicLocation(), "test");
+        fanclubService.saveDummyFanclub(f10);
+
+        Member m1 = new Member("testuser1", f10.getFanclubId(), "https://github.com/Unithon10th-Team4/Team4-BE/assets/39437170/aba36e2d-0756-4434-8c21-948fdccbb580", memberDummyBasicLocation(), "test");
         Member m2 = new Member("testuser2", f3.getFanclubId(), "https://github.com/Unithon10th-Team4/Team4-BE/assets/39437170/aba36e2d-0756-4434-8c21-948fdccbb580", memberDummyBasicLocation(), "test");
         Member m3 = new Member("testuser3", f5.getFanclubId(), "https://github.com/Unithon10th-Team4/Team4-BE/assets/39437170/aba36e2d-0756-4434-8c21-948fdccbb580", memberDummyBasicLocation(), "test");
         memberService.addDummyMemberByBasic(m1);
