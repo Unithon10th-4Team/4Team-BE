@@ -22,12 +22,9 @@ public class MemberService {
 
     private final StringRedisTemplate redisTemplate;
     private final MemberRepository memberRepository;
-<<<<<<< HEAD
     private final S3Service s3Service;
-=======
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
->>>>>>> c798cac7660557a3cee13f8bb6e8fc28095ebfde
 
     public Member getMember(String name) {
         return memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
