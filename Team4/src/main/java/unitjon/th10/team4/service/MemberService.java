@@ -152,4 +152,9 @@ public class MemberService {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름이다."));
         return member.getFanclubId();
     }
+
+    public void addDummyMemberByBasic(Member member){
+        member.setOnline(true);
+        memberRepository.save(member);
+    }
 }

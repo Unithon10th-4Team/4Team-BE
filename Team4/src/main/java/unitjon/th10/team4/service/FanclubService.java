@@ -62,4 +62,14 @@ public class FanclubService {
         redisTemplate.opsForZSet().incrementScore("fanclub:ranking", id, point);
         fanclubRepository.save(fanclub);
     }
+
+    public void saveDummyFanclub(Fanclub fanclub){
+        fanclub.setPoint(0);
+
+
+        fanclubRepository.save(fanclub);
+
+        // 랭킹 보드에 추가
+        redisTemplate.opsForZSet().add("fanclub:ranking", fanclub.getFanclubId(), fanclub.getPoint());
+    }
 }
