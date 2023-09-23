@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -16,8 +15,8 @@ public class SseEmitters {
 
     private final Map<String, SseEmitter> emitters = new ConcurrentHashMap<>();
 
-    public SseEmitter add(String memberName,SseEmitter emitter) {
-        this.emitters.put(memberName,emitter);
+    public SseEmitter add(String memberName, SseEmitter emitter) {
+        this.emitters.put(memberName, emitter);
         log.info("new emitter added: {}", emitter);
         log.info("emitter list size: {}", emitters.size());
         log.info("emitter list: {}", emitters);
@@ -31,11 +30,11 @@ public class SseEmitters {
         return emitter;
     }
 
-    public SseEmitter get(String memberName){
+    public SseEmitter get(String memberName) {
         return emitters.get(memberName);
     }
 
-    public Boolean existMemberInSession(String memberName){
-        return emitters.get(memberName)==null;
+    public boolean existsMemberInSession(String memberName) {
+        return emitters.get(memberName) != null;
     }
 }

@@ -27,7 +27,7 @@ public class FcmService {
     private final ObjectMapper objectMapper;
 
     @SneakyThrows
-    public void sendMessageTo(String targetToken, String title, String body){
+    public void sendMessageTo(String targetToken, String title, String body) {
         String message = makeMessage(targetToken, title, body);
 
         OkHttpClient client = new OkHttpClient();
@@ -44,8 +44,8 @@ public class FcmService {
         log.info(response.body().string());
     }
 
-    private String makeMessage(String fcmToken,String title,String contents) throws JsonProcessingException {
-        System.out.println("FCM="+fcmToken);
+    private String makeMessage(String fcmToken, String title, String contents) throws JsonProcessingException {
+        System.out.println("FCM=" + fcmToken);
         FCMMessage fcmMessage = FCMMessage.builder()
                 .message(FCMMessage.Message.builder()
                         .token(fcmToken)
@@ -63,18 +63,18 @@ public class FcmService {
     }
 
     @SneakyThrows
-    public void send(Message message){
-        try{
-            System.out.println("Message="+message.toString());
+    public void send(Message message) {
+        try {
+            System.out.println("Message=" + message.toString());
             FirebaseMessaging.getInstance().send(message);
-        }catch (Exception e){
-            System.out.println("FCM error="+e.getMessage());
-            System.out.println("FCM error typex="+e.getClass());
+        } catch (Exception e) {
+            System.out.println("FCM error=" + e.getMessage());
+            System.out.println("FCM error typex=" + e.getClass());
 
         }
     }
 
-    private String getAccessToken() throws IOException{
+    private String getAccessToken() throws IOException {
         String firebaseConfigPath = "/unithon10th.json";
         GoogleCredentials googleCredentials = GoogleCredentials
                 .fromStream(new ClassPathResource(firebaseConfigPath).getInputStream())
