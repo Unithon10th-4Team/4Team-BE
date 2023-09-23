@@ -15,13 +15,18 @@ public class FanclubFindDto {
     private String fanclubInfo;
     private String artist;
     private String artistUrl;
-    private String point;
-
+    private int point;
 
     public static FanclubFindDto toDto(Fanclub fanclub) {
-        return new FanclubFindDto(fanclub.getFanclubId(),fanclub.getName(), fanclub.getLogoUrl(), fanclub.getFanclubInfo(), fanclub.getArtist(),fanclub.getArtistUrl(),fanclub.getPoint());}
-
-
-
+        return new FanclubFindDto(
+                fanclub.getFanclubId(),
+                fanclub.getName(),
+                fanclub.getLogoImageUrl(),
+                fanclub.getFanclubInfo(),
+                fanclub.getArtistName(),
+                fanclub.getArtistImageUrl(),
+                fanclub.getPoint()
+        );
+    }
 }
 

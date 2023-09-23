@@ -1,16 +1,17 @@
 package unitjon.th10.team4.dto.req;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import org.springframework.web.multipart.MultipartFile;
-@Data
+
+@Getter
 @AllArgsConstructor
 public class FanclubSaveDto {
 
     private String name;
-    private MultipartFile logo;
+    private MultipartFile logoImage;
     private String fanclubInfo;
-    private String artist;
+    private String artistName;
     private MultipartFile artistImage;
-    private String point;
+    private int point;
 }
