@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    include:
+      - fcm
+  data:
+    redis:
+      port: 6379
+      host: localhost
