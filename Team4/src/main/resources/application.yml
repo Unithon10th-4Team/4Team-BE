@@ -19,6 +19,7 @@ cloud:
     credentials:
       accessKey: AKIARS33SSNQQ4PT5SX6
       secretKey: 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
+
     s3:
       bucket: plowithmebucket
     region:
