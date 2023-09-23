@@ -15,6 +15,7 @@ import unitjon.th10.team4.dto.event.LocationUpdatedEvent;
 import unitjon.th10.team4.dto.event.StatusUpdatedEvent;
 import unitjon.th10.team4.dto.res.MemberUpdateResponse;
 import unitjon.th10.team4.entity.Member;
+import unitjon.th10.team4.entity.SseType;
 import unitjon.th10.team4.repository.MemberRepository;
 
 import java.io.IOException;
@@ -107,8 +108,9 @@ public class MemberService {
                                 .name(updatedMember.getName())
                                 .data(new MemberUpdateResponse.Status(
                                         updatedMember.getName(),
-                                        updatedMember.isOnline()))
-                );
+                                        updatedMember.isOnline(),
+                                        SseType.STATUS)
+                ));
             }
         }
     }

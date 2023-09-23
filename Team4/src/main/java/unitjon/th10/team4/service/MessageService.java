@@ -14,6 +14,7 @@ import unitjon.th10.team4.dto.event.EmojiEvent;
 import unitjon.th10.team4.dto.req.MessageReqDTO;
 import unitjon.th10.team4.dto.res.MessageResDTO;
 import unitjon.th10.team4.entity.Message;
+import unitjon.th10.team4.entity.SseType;
 import unitjon.th10.team4.repository.MessageRepository;
 
 import java.io.IOException;
@@ -93,6 +94,7 @@ public class MessageService {
             findSse.send(SseEmitter.event()
                     .data(MessageResDTO.Emoji
                             .builder()
+                            .sseType(SseType.MESSAGE)
                             .sender(message.getFrom())
                             .contents(message.getContents())
                             .build())

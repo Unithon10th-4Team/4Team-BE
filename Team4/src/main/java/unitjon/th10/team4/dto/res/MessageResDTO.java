@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Getter;
+import unitjon.th10.team4.entity.SseType;
 
 @Getter
 public class MessageResDTO {
@@ -27,5 +28,6 @@ public class MessageResDTO {
     public static class Emoji{
         private String sender;
         private String contents;
+        private SseType sseType;
     }
 }
