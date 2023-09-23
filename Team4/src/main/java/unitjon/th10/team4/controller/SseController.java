@@ -16,7 +16,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @Log4j2
-@RequestMapping("/v1/sse")
+@RequestMapping("/sse")
 public class SseController {
     private final SseEmitters sseEmitters;
 
