@@ -59,13 +59,10 @@ public class MessageService {
     }
 
     @Transactional
-    public ResponseEntity<?> getMessageLogList(final String memberName) {
-        String messageListKeyValue = "member:" + memberName + ":messages";
-        ValueOperations<String, List<String>> valueOperations = redisTemplate.opsForValue();
-        List<String> messageLog = valueOperations.get(messageListKeyValue);
-        List<MessageResDTO.List> messageReceivedList = getMessageReceivedList(messageLog);
-        Collections.reverse(messageReceivedList);
-        return new ResponseEntity<>(messageReceivedList, HttpStatus.OK);
+    public List<MessageResDTO.List> getMessageLogList(final String memberName) {
+        String messageListKey = "member:%s:messages".formatted(memberName);
+        List<String> messageLog = redisTemplate.opsForValue().get(messageListKey);
+        return messageLog != null ? getMessageReceivedList(messageLog) : List.of();
     }
 
     private void setMessageListOnMessageLog(MessageReqDTO.Emoji emojiDTO,String messageId){
@@ -104,5 +101,4 @@ public class MessageService {
                                 .build())
         );
     }
-
 }
