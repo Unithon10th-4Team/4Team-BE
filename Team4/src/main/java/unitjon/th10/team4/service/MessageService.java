@@ -43,9 +43,7 @@ public class MessageService {
                 .build());
 
         setMessageLogAndReceiverNotification(emojiDTO,messageId);
-        //TODO : FCM 전달
         //TODO : 발신자, 그룹 포인트 갱신
-        //        fcmService.sendMessageTo(emojiDTO.getFcmToken(),emojiDTO.getFrom()+"님이"+emojiDTO.getContents()+"를 보냈어요","");
     }
 
     @Transactional
