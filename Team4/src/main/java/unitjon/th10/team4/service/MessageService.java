@@ -16,8 +16,6 @@ import unitjon.th10.team4.dto.res.MessageResDTO;
 import unitjon.th10.team4.entity.Message;
 import unitjon.th10.team4.repository.MessageRepository;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Service
@@ -30,6 +28,7 @@ public class MessageService {
     private final RedisTemplate<String,List<String>> redisTemplate;
     private final SseEmitters sseEmitters;
     private final MemberService memberService;
+    private final FanclubService fanclubService;
 
     @Transactional
     public void messageToEmoji(MessageReqDTO.Emoji emojiDTO){
@@ -37,6 +36,8 @@ public class MessageService {
             throw new RuntimeException("회원 SSE 커넥션 정보 없음");
         }
         String messageId = UUID.randomUUID().toString();
+        String sender = emojiDTO.getFrom();
+
         messageRepository.save(
                 Message.builder()
                         .message_id(messageId)
@@ -45,7 +46,8 @@ public class MessageService {
                         .to(emojiDTO.getTo())
                         .timeStamp(emojiDTO.getTimeStamp())
                 .build());
-        memberService.updatePoint(emojiDTO.getFrom(),5);
+        memberService.updatePoint(sender,5);
+        fanclubService.updatePoint(memberService.getFanclubIdByName(sender),5);
         setMessageLogAndReceiverNotification(emojiDTO,messageId);
         //TODO : 발신자, 그룹 포인트 갱신
     }
@@ -101,4 +103,5 @@ public class MessageService {
         byte[] bytes = StringUtils.getBytesUtf8(originMessage);
         return StringUtils.newStringUtf8(bytes);
     }
+
 }
