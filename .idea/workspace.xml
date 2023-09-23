@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="485bcdd6-b583-4889-b701-74e006464e90" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/FanclubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/FanclubService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/MemberService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/MemberService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/S3service.java" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/java/unitjon/th10/team4/service/S3Service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Team4/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Team4/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="485bcdd6-b583-4889-b701-74e006464e90" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,7 +101,7 @@
       <updated>1695427736054</updated>
       <workItem from="1695427737438" duration="3800000" />
       <workItem from="1695432704333" duration="480000" />
-      <workItem from="1695441601293" duration="33775000" />
+      <workItem from="1695441601293" duration="34289000" />
     </task>
     <servers />
   </component>

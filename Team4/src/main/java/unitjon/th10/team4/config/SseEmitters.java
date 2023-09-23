@@ -26,7 +26,6 @@ public class SseEmitters {
         });
         emitter.onTimeout(() -> {
             log.info("onTimeout callback");
-            emitter.complete();
         });
 
         return emitter;
@@ -34,5 +33,9 @@ public class SseEmitters {
 
     public SseEmitter get(String memberName){
         return emitters.get(memberName);
+    }
+
+    public Boolean existMemberInSession(String memberName){
+        return emitters.get(memberName)==null;
     }
 }

@@ -16,8 +16,6 @@ import unitjon.th10.team4.dto.res.MessageResDTO;
 import unitjon.th10.team4.entity.Message;
 import unitjon.th10.team4.repository.MessageRepository;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 @Service
@@ -29,10 +27,17 @@ public class MessageService {
     private final FcmService fcmService;
     private final RedisTemplate<String,List<String>> redisTemplate;
     private final SseEmitters sseEmitters;
+    private final MemberService memberService;
+    private final FanclubService fanclubService;
 
     @Transactional
     public void messageToEmoji(MessageReqDTO.Emoji emojiDTO){
+        if (sseEmitters.existMemberInSession(emojiDTO.getTo())) {
+            throw new RuntimeException("회원 SSE 커넥션 정보 없음");
+        }
         String messageId = UUID.randomUUID().toString();
+        String sender = emojiDTO.getFrom();
+
         messageRepository.save(
                 Message.builder()
                         .message_id(messageId)
@@ -41,11 +46,10 @@ public class MessageService {
                         .to(emojiDTO.getTo())
                         .timeStamp(emojiDTO.getTimeStamp())
                 .build());
-
+        memberService.updatePoint(sender,5);
+        fanclubService.updatePoint(memberService.getFanclubIdByName(sender),5);
         setMessageLogAndReceiverNotification(emojiDTO,messageId);
-        //TODO : FCM 전달
         //TODO : 발신자, 그룹 포인트 갱신
-        //        fcmService.sendMessageTo(emojiDTO.getFcmToken(),emojiDTO.getFrom()+"님이"+emojiDTO.getContents()+"를 보냈어요","");
     }
 
     @Transactional
@@ -97,7 +101,7 @@ public class MessageService {
 
     private String encodeUTF8(String originMessage){
         byte[] bytes = StringUtils.getBytesUtf8(originMessage);
-
         return StringUtils.newStringUtf8(bytes);
     }
+
 }
