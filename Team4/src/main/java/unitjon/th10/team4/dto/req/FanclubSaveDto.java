@@ -9,8 +9,8 @@ public class FanclubSaveDto {
 
     private String name;
     private MultipartFile logo;
-    private String fanclub_info;
+    private String fanclubInfo;
     private String artist;
-    private MultipartFile artist_image;
+    private MultipartFile artistImage;
     private String point;
 }

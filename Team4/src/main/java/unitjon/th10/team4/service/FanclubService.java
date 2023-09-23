@@ -27,10 +27,10 @@ public class FanclubService {
         Fanclub fanclub = new Fanclub();
         fanclub.setFanclubId(UUID.randomUUID().toString());
         fanclub.setName(fanclubSaveDto.getName());
-        fanclub.setFanclubInfo(fanclubSaveDto.getFanclub_info());
+        fanclub.setFanclubInfo(fanclubSaveDto.getFanclubInfo());
         fanclub.setLogoUrl(s3service.saveImage(fanclubSaveDto.getLogo()));
         fanclub.setArtist(fanclubSaveDto.getArtist());
-        fanclub.setArtistUrl(s3service.saveImage(fanclubSaveDto.getArtist_image()));
+        fanclub.setArtistUrl(s3service.saveImage(fanclubSaveDto.getArtistImage()));
         fanclub.setPoint(fanclub.getPoint());
 
         fanclubRepository.save(fanclub);
