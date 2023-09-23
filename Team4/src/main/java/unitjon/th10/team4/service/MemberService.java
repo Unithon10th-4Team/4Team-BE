@@ -9,10 +9,15 @@ import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+import unitjon.th10.team4.config.SseEmitters;
 import unitjon.th10.team4.dto.event.LocationUpdatedEvent;
+import unitjon.th10.team4.dto.event.StatusUpdatedEvent;
+import unitjon.th10.team4.dto.res.MemberUpdateResponse;
 import unitjon.th10.team4.entity.Member;
 import unitjon.th10.team4.repository.MemberRepository;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 
@@ -24,6 +29,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
+    private final SseEmitters sseEmitters;
 
     public Member getMember(String name) {
         return memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
@@ -63,7 +69,6 @@ public class MemberService {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
         member.setLocation(point);
         memberRepository.save(member);
-
         publisher.publishEvent(new LocationUpdatedEvent(member));
     }
 
@@ -71,6 +76,29 @@ public class MemberService {
         Member member = memberRepository.findById(name).orElseThrow(() -> new RuntimeException("존재하지 않는 이름입니다."));
         member.setOnline(isOnline);
         memberRepository.save(member);
+        publisher.publishEvent(new StatusUpdatedEvent(member));
+    }
+
+    @EventListener
+    public void updateStatus(StatusUpdatedEvent event) throws IOException {
+        Member updatedMember = event.member();
+        List<Member> nearMembers = memberRepository.findByLocationNear(updatedMember.getLocation(), new Distance(2, RedisGeoCommands.DistanceUnit.METERS));
+        nearMembers.removeIf(e -> !e.getFanclubId().equals(updatedMember.getFanclubId()) || !e.isOnline() || e.getName().equals(updatedMember.getName()));
+        for (Member member: nearMembers){
+            String membername = member.getName();
+            if (!sseEmitters.existMemberInSession(membername)) {
+                continue;
+            }
+            SseEmitter sseEmitter = sseEmitters.get(membername);
+            sseEmitter.send(
+                    SseEmitter.event()
+                            .name(updatedMember.getName())
+                            .data(MemberUpdateResponse.Status
+                                    .builder()
+                                    .name(updatedMember.getName())
+                                    .isOnline(updatedMember.isOnline()))
+            );
+        }
     }
 
     @EventListener
