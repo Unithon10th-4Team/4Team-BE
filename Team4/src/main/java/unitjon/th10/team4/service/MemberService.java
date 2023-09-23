@@ -5,7 +5,6 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.Point;
-import org.springframework.data.keyvalue.core.KeyValueOperations;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
@@ -17,8 +16,8 @@ import unitjon.th10.team4.dto.event.StatusUpdatedEvent;
 import unitjon.th10.team4.dto.res.MemberUpdateResponse;
 import unitjon.th10.team4.entity.Fanclub;
 import unitjon.th10.team4.entity.Member;
-import unitjon.th10.team4.repository.FanclubRepository;
 import unitjon.th10.team4.entity.SseType;
+import unitjon.th10.team4.repository.FanclubRepository;
 import unitjon.th10.team4.repository.MemberRepository;
 
 import java.io.IOException;
@@ -37,7 +36,6 @@ public class MemberService {
     private final ApplicationEventPublisher publisher;
     private final FcmService fcmService;
     private final SseEmitters sseEmitters;
-    private final S3Service s3Service;
     private final FanclubRepository fanclubRepository;
 
     public List<Member> getAllMembers() {
