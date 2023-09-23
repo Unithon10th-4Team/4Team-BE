@@ -29,10 +29,21 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+    //파일 업로드 메소드 라이브러리
+    implementation 'commons-fileupload:commons-fileupload:1.4'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+
+    //AWS S3
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+
     //fcm
     implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
     //okhttp
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+
 }
 
 tasks.named('test') {
