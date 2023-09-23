@@ -7,6 +7,8 @@ import unitjon.th10.team4.dto.req.FanclubSaveDto;
 import unitjon.th10.team4.entity.Fanclub;
 import unitjon.th10.team4.service.FanclubService;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -20,11 +22,12 @@ public class FanclubController {
         return FanclubFindDto.toDto(fanclub);
     }
 
-//    @GetMapping("/fanclubs")
-//    public List<FanclubFindDto> findFanclubRanking(){
-//
-//        return FanclubUpdateDtos;
-//    }
+    @GetMapping("/fanclubs")
+    public List<FanclubFindDto> findFanclubRanking(){
+        return fanclubService.findFanclubRanking().stream()
+                .map(FanclubFindDto::toDto)
+                .toList();
+    }
 
     @PostMapping("/fanclubs")
     public void saveFanclub(@ModelAttribute FanclubSaveDto fanclubSaveDto){

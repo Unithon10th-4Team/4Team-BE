@@ -8,13 +8,24 @@ import unitjon.th10.team4.entity.Fanclub;
 import unitjon.th10.team4.repository.FanclubRepository;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @RequiredArgsConstructor
 @Service
 public class FanclubService {
 
+    private final StringRedisTemplate redisTemplate;
     private final FanclubRepository fanclubRepository;
 //    private final S3service s3service;
+
+    public List<Fanclub> findFanclubRanking() {
+        Set<String> fanclubSet = redisTemplate.opsForZSet().reverseRange("fanclub:ranking", 0, -1);
+        List<String> fanclubIds = fanclubSet != null ? fanclubSet.stream().toList() : List.of();
+        Iterable<Fanclub> fanclubs = fanclubRepository.findAllById(fanclubIds);
+        return StreamSupport.stream(fanclubs.spliterator(), false).toList();
+    }
 
     public Fanclub findFanclub(String id) {
         return fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
