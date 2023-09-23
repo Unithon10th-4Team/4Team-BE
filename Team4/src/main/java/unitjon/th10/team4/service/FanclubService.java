@@ -14,18 +14,15 @@ import java.util.List;
 public class FanclubService {
 
     private final FanclubRepository fanclubRepository;
-//    private final S3service s3service;
+    private final S3Service s3service;
 
     public Fanclub findFanclub(String id) {
         return fanclubRepository.findById(id).orElseThrow(() -> new RuntimeException("존재하지 않는 id입니다."));
     }
 
     public void saveFanclub(FanclubSaveDto fanclubSaveDto) {
-        // 이미지 저장 TODO
-//        fanclub.setLogoUrl(s3service.saveImage(fanclubSaveDto.getLogo()));
-//        fanclub.setArtistUrl(s3service.saveImage(fanclubSaveDto.getArtistImage()));
-        String logoImageUrl = "https://test.com";
-        String artistImageUrl = "https://test.com";
+        String logoImageUrl = s3service.saveImage(fanclubSaveDto.getLogoImage());
+        String artistImageUrl = s3service.saveImage(fanclubSaveDto.getArtistImage());
 
         Fanclub fanclub = new Fanclub(
                 fanclubSaveDto.getName(),
