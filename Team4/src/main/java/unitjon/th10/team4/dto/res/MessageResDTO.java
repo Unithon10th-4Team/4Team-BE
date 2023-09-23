@@ -21,4 +21,11 @@ public class MessageResDTO {
             return "List [sender=" + sender + ", contents=" + contents +", timeStamp="+timeStamp+ "]";
         }
     }
+
+    @Getter
+    @Builder
+    public static class Emoji{
+        private String sender;
+        private String contents;
+    }
 }
