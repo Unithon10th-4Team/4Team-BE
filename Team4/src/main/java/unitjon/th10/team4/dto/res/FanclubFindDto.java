@@ -1,11 +1,9 @@
-package unitjon.th10.team4.global.dto;
+package unitjon.th10.team4.dto.res;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import unitjon.th10.team4.global.entity.Fanclub;
-
-import java.util.List;
+import unitjon.th10.team4.entity.Fanclub;
 
 @Data
 @AllArgsConstructor
@@ -21,7 +19,7 @@ public class FanclubFindDto {
 
 
     public static FanclubFindDto toDto(Fanclub fanclub) {
-        return new FanclubFindDto(fanclub.getFanclub_id(),fanclub.getName(), fanclub.getLogo_url(), fanclub.getFanclub_info(), fanclub.getArtist(),fanclub.getArtist_url(),fanclub.getPoint());}
+        return new FanclubFindDto(fanclub.getFanclubId(),fanclub.getName(), fanclub.getLogoUrl(), fanclub.getFanclubInfo(), fanclub.getArtist(),fanclub.getArtistUrl(),fanclub.getPoint());}
 
 
 

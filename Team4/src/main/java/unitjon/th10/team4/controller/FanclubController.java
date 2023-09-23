@@ -1,11 +1,10 @@
-package unitjon.th10.team4.global.controller;
+package unitjon.th10.team4.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import unitjon.th10.team4.global.dto.FanclubFindDto;
-import unitjon.th10.team4.global.dto.FanclubSaveDto;
-import unitjon.th10.team4.global.dto.FanclubUpdateDto;
-import unitjon.th10.team4.global.service.FanclubService;
+import unitjon.th10.team4.dto.res.FanclubFindDto;
+import unitjon.th10.team4.dto.req.FanclubSaveDto;
+import unitjon.th10.team4.service.FanclubService;
 
 
 @RequiredArgsConstructor
@@ -38,15 +37,6 @@ public class FanclubController {
     @PostMapping("/fanclubs")
     public void saveFanclub(@ModelAttribute FanclubSaveDto fanclubSaveDto){
         fanclubService.saveFanclub(fanclubSaveDto);
-
-    }
-
-    /**
-     * 팬클럽 수정
-     */
-    @PatchMapping("/fanclubs/{fanclubId}")
-    public void updateFanclub(@PathVariable String id, @ModelAttribute FanclubUpdateDto fanclubUpdateDto){
-        fanclubService.updateFanclub(id, fanclubUpdateDto);
 
     }
 

@@ -1,4 +1,4 @@
-package unitjon.th10.team4.global.config;
+package unitjon.th10.team4.config;
 
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

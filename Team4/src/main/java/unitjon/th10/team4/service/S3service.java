@@ -1,4 +1,4 @@
-package unitjon.th10.team4.global.service;
+package unitjon.th10.team4.service;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.UUID;
 

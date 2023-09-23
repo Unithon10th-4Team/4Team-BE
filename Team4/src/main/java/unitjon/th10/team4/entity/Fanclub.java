@@ -1,4 +1,4 @@
-package unitjon.th10.team4.global.entity;
+package unitjon.th10.team4.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,8 +8,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -19,13 +17,11 @@ import java.util.UUID;
 public class Fanclub implements Serializable {
 
     @Id
-    private String fanclub_id;
+    private String fanclubId;
     private String name;
-    private String logo_url;
-    private String fanclub_info;
+    private String logoUrl;
+    private String fanclubInfo;
     private String artist;
-    private String artist_url;
+    private String artistUrl;
     private String point;
-
-
 }
