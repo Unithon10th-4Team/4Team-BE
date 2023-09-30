@@ -9,7 +9,8 @@
 지금 내 주변에 같은 팬덤의 팬이 있는지 알고 싶지만, 덕밍아웃은 수줍다면🙈
 **`HOXY`**로 내 주변 팬덤을 찾아 이모지로 함께 소통하고, 코인도 적립해 보세요!
 
-![Slide 16_9 - 19 (1).png](https://prod-files-secure.s3.us-west-2.amazonaws.com/9f325b5e-9f61-4603-9788-e4d9df3d7836/34e6c7f6-2a34-4d46-84e1-cbdc6c9c50e1/Slide_16_9_-_19_(1).png)
+<img width="707" alt="스크린샷 2023-09-30 오후 1 44 46" src="https://github.com/Unithon10th-Team4/Hoxy-BE/assets/39437170/0bfa1f66-c3de-468a-81e0-e0f1b37fe503">
+
 
 ### 🎵 서비스 기획 의도
 
@@ -54,10 +55,6 @@
 - **팀 발표자료(PDF)**
 
 [HOXY_서비스 브리프.pdf](https://prod-files-secure.s3.us-west-2.amazonaws.com/9f325b5e-9f61-4603-9788-e4d9df3d7836/c18929b0-142f-469a-817f-7baa4bf29f1e/HOXY_%E1%84%89%E1%85%A5%E1%84%87%E1%85%B5%E1%84%89%E1%85%B3_%E1%84%87%E1%85%B3%E1%84%85%E1%85%B5%E1%84%91%E1%85%B3.pdf)
-
-- **시연영상** ← 필수
-    
-    [hoxy,,,.mp4](https://prod-files-secure.s3.us-west-2.amazonaws.com/9f325b5e-9f61-4603-9788-e4d9df3d7836/5b88a81b-0a34-4de7-bbea-c2f01975c538/hoxy.mp4)
     
 - **GitHub :** https://github.com/orgs/Unithon10th-Team4/repositories
 - **Figma :** [https://www.figma.com/file/Y4EkCkd7aCPgcwKZ2f7PbF/디자인-보드?type=design&node-id=255%3A2233&mode=design&t=ohROR94P42QvtFY0-1](https://www.figma.com/file/Y4EkCkd7aCPgcwKZ2f7PbF/%EB%94%94%EC%9E%90%EC%9D%B8-%EB%B3%B4%EB%93%9C?type=design&node-id=255%3A2233&mode=design&t=ohROR94P42QvtFY0-1)
